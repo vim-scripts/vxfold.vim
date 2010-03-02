@@ -1,0 +1,56 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=3004
+
+This script implements a fold-cycling functionality similar to
+the one in emacs org-mode.
+
+Subfolds are open/closed each time TAB or Shift-TAB is pressed.
+TAB operates on the lines below a heading that is in the current line.
+Shift-TAB operates on the whole buffer.
+
+After each press a step in the following cycle will be performed:
+   1. fold closed
+   2. show direct subheadings
+   3. show structure below heading + first line of text
+   4. unfold all
+
+   NOTES: It is possible to skip step 2 and/or 3, but the per-buffer 
+   configuration is still missing (I think emacs-org uses only 1-2-4). In step 
+   2 the text under the current heading may be visible; this is because of
+   the way folding is implemented in Vim.
+
+Fold cycling will work in buffers that are folded in the following way:
+  * headings have folding levels 1-9
+  * text has a folding level higher than 9
+
+This means that the script can work with TVO (vimscript#517) without
+changing the folding mode. To enable fold cycling in TVO mode:
+
+  :VxFoldTvo
+
+For other modes the foldmethod has to be changed. Foldmethods are
+provided for viki (vimscript#861) and vimwiki (vimscript#2226).
+
+  :VxFoldViki
+  :VxFoldVimWiki
+
+The later commands will also work on any buffer that has the headings defined
+with a number of characters at the beginning of line (viki='*', vimwiki='=').
+
+If a file uses '#' characers to mark headings with levels, it is also possible
+to use fold cycling in it like this:
+
+  :call vxfold#SetFold_OrgBolCount('#')
+  :VxFoldTvo
+
+The display of the folded text can be changed with
+
+  :call vxfold#SetFoldTextFirstLine()
+
+which is the default for VxFoldVimWiki and VxFoldViki.
+
+Version 0.1 is less than 2 days old, so it is not perfect. It needs more
+work especially the customization/command part.
+
+Please report bugs/suggstions on the Vim/Wiki (link top right).
+
+
