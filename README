@@ -36,7 +36,7 @@ provided for viki (vimscript#861) and vimwiki (vimscript#2226).
 The later commands will also work on any buffer that has the headings defined
 with a number of characters at the beginning of line (viki='*', vimwiki='=').
 
-If a file uses '#' characers to mark headings with levels, it is also possible
+If a file uses '#' characters to mark headings with levels, it is also possible
 to use fold cycling in it like this:
 
   :call vxfold#SetFold_OrgBolCount('#')
@@ -48,9 +48,6 @@ The display of the folded text can be changed with
 
 which is the default for VxFoldVimWiki and VxFoldViki.
 
-Version 0.1 is less than 2 days old, so it is not perfect. It needs more
-work especially the customization/command part.
-
-Please report bugs/suggstions on the Vim/Wiki (link top right).
+Please report bugs/suggestions on the Vim/Wiki (link top right).
 
 

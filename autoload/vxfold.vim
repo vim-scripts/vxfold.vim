@@ -27,8 +27,8 @@ function! vxfold#SetFold_BolCount(char)
    if a:char == ']' | let char = '\]'
    else | let char = a:char | endif
    let b:vxfold_bolcount_char = char
-   set foldexpr=vxfold#BolCount(v:lnum)
-   set foldmethod=expr
+   setlocal foldexpr=vxfold#BolCount(v:lnum)
+   setlocal foldmethod=expr
 endfunc
 
 function! vxfold#FoldText()
@@ -59,13 +59,13 @@ endfunc
 " foldtext() is SetFoldText(1, 1)
 function! vxfold#SetFoldText(showCount, maxLines)
    if a:showCount != 0 && a:maxLines < 2
-      set foldtext=foldtext()
+      setlocal foldtext=foldtext()
       return
    endif
    if a:maxLines < 1 | let a:maxLines = 1 | endif
 
    let b:vxfold_foldtext_param=[a:showCount, a:maxLines]
-   set foldtext=vxfold#FoldText()
+   setlocal foldtext=vxfold#FoldText()
 endfunc
 
 " Fold display: first line of text
@@ -85,7 +85,7 @@ function! vxfold#FoldTextFirstLine()
 endfunc
 
 function! vxfold#SetFoldTextFirstLine()
-   set foldtext=vxfold#FoldTextFirstLine()
+   setlocal foldtext=vxfold#FoldTextFirstLine()
 endfunc
 
 " ORG Mode Folding
@@ -103,8 +103,8 @@ function! vxfold#SetFold_OrgBolCount(char)
    if a:char == ']' | let char = '\]'
    else | let char = a:char | endif
    let b:vxfold_bolcount_char = char
-   set foldexpr=vxfold#OrgBolCount(v:lnum)
-   set foldmethod=expr
+   setlocal foldexpr=vxfold#OrgBolCount(v:lnum)
+   setlocal foldmethod=expr
 endfunc
 
 let s:padding = printf('%120s', ' ')
@@ -125,7 +125,7 @@ endfunc
 
 function! vxfold#SetFoldTextOrg()
    let b:vxfold_foldtext_param=[0, 1]
-   set foldtext=vxfold#FoldTextOrg()
+   setlocal foldtext=vxfold#FoldTextOrg()
 endfunc
 
 " Assumption: text has foldelvel >= 10
@@ -228,9 +228,6 @@ function! s:ApplyFoldState(lnstart, lnend, fstate)
       exec lnum . ',' . lnend . 'foldopen!'
    endif
 endfunc
-
--
-
 
 
 " Texts have foldlevel 10, headings 1 - 9
